@@ -1,5 +1,17 @@
 <script lang="ts">
-	import { GoogleSignInButton } from '$lib';
+	import { onMount } from 'svelte';
+	import { GoogleSignInButton, XSignInButton, GitHubSignInButton } from '$lib';
+	import hljs from 'highlight.js/lib/core';
+	import typescript from 'highlight.js/lib/languages/typescript';
+	import shell from 'highlight.js/lib/languages/shell';
+	import 'highlight.js/styles/github-dark.css';
+	
+	hljs.registerLanguage('typescript', typescript);
+	hljs.registerLanguage('shell', shell);
+
+	onMount(() => {
+		hljs.highlightAll();
+	});
 
 	async function mockSignIn() {
 		await new Promise((resolve) => setTimeout(resolve, 900));
@@ -23,28 +35,34 @@
 		<p class="lede">
 			Drop-in sign-in buttons with sensible defaults, accessibility, and customization.
 		</p>
-		<div class="cta-row">
+		<div class="cta-row" style="width: 100%;">
 			<GoogleSignInButton signInFunction={mockSignIn} />
 		</div>
-		<p class="hint">Demo button uses a mocked async sign-in.</p>
+		<div class="cta-row" style="width: 100%;">
+			<GitHubSignInButton signInFunction={mockSignIn} />
+		</div>
+		<div class="cta-row" style="width: 100%;">
+			<XSignInButton signInFunction={mockSignIn} />
+		</div>
+		<p class="hint">Demo buttons use a mocked async sign-in.</p>
 	</section>
 
 	<section class="section">
 		<h2>Install</h2>
-		<pre><code>npm install svelte-social-login-buttons</code></pre>
+		<pre><code class="language-shell">npm install svelte-social-login-buttons</code></pre>
 	</section>
 
 	<section class="section">
 		<h2>Usage</h2>
-		<pre><code>{`&lt;script lang="ts"&gt;
+		<pre><code class="language-typescript">{`<script lang="ts">
   import { GoogleSignInButton } from 'svelte-social-login-buttons';
 
   async function signIn() {
     // Your auth flow here
   }
-&lt;/script&gt;
+</script>
 
-&lt;GoogleSignInButton signInFunction={signIn} /&gt;`}</code></pre>
+<GoogleSignInButton signInFunction={signIn} />`}</code></pre>
 	</section>
 
 	<section class="section grid">
@@ -58,7 +76,6 @@
 			<h3>Notes</h3>
 			<ul>
 				<li>Works with Svelte 5 (runes).</li>
-				<li>Style with your own classes or wrappers.</li>
 			</ul>
 		</div>
 	</section>
@@ -91,6 +108,10 @@
 		border-radius: 18px;
 		padding: 32px;
 		box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
 	}
 
 	.badge {
@@ -122,6 +143,7 @@
 
 	.cta-row {
 		max-width: 360px;
+		margin-bottom: 16px;
 	}
 
 	.hint {
@@ -170,10 +192,5 @@
 		margin: 0;
 		padding-left: 18px;
 		color: #4b5563;
-	}
-
-	code {
-		font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
-			'Courier New', monospace;
 	}
 </style>
