@@ -11,24 +11,24 @@
 	}
 </script>
 
-<div class="w-full space-y-3">
+<div class="google-signin">
 	<button
 		onclick={handleGoogleSignIn}
 		disabled={isLoading}
-		class="group relative flex w-full cursor-pointer items-center justify-center gap-3 rounded-4xl border border-gray-300 bg-white px-6 py-3.5 text-base font-medium text-gray-700 shadow-sm transition-all duration-200 hover:border-gray-400 hover:bg-gray-50 hover:shadow-md focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none active:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:border-gray-300 disabled:hover:bg-white disabled:hover:shadow-sm"
+		class="google-signin__button"
 		aria-label="Sign in with Google"
 	>
 		{#if isLoading}
 			<svg
-				class="h-5 w-5 animate-spin text-gray-600"
+				class="google-signin__spinner"
 				xmlns="http://www.w3.org/2000/svg"
 				fill="none"
 				viewBox="0 0 24 24"
 			>
-				<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"
-				></circle>
+				<circle class="spinner-track" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4">
+				</circle>
 				<path
-					class="opacity-75"
+					class="spinner-path"
 					fill="currentColor"
 					d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
 				></path>
@@ -36,7 +36,7 @@
 			<span>Signing in...</span>
 		{:else}
 			<svg
-				class="h-6 w-6 shrink-0 transition-transform duration-200 group-hover:scale-110"
+				class="google-signin__logo"
 				viewBox="0 0 24 24"
 				xmlns="http://www.w3.org/2000/svg"
 			>
@@ -61,3 +61,81 @@
 		{/if}
 	</button>
 </div>
+
+<style>
+	.google-signin {
+		width: 100%;
+	}
+
+	.google-signin__button {
+		width: 100%;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 12px;
+		padding: 14px 24px;
+		border-radius: 9999px;
+		border: 1px solid #d1d5db;
+		background: #ffffff;
+		color: #374151;
+		font-size: 16px;
+		font-weight: 600;
+		cursor: pointer;
+		box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
+		transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease,
+			transform 0.2s ease;
+	}
+
+	.google-signin__button:hover:not(:disabled) {
+		border-color: #9ca3af;
+		background: #f9fafb;
+		box-shadow: 0 6px 14px rgba(15, 23, 42, 0.12);
+	}
+
+	.google-signin__button:active:not(:disabled) {
+		background: #f3f4f6;
+		transform: translateY(1px);
+	}
+
+	.google-signin__button:focus-visible {
+		outline: 2px solid #2563eb;
+		outline-offset: 2px;
+	}
+
+	.google-signin__button:disabled {
+		cursor: not-allowed;
+		opacity: 0.6;
+	}
+
+	.google-signin__spinner {
+		width: 20px;
+		height: 20px;
+		color: #4b5563;
+		animation: spin 1s linear infinite;
+	}
+
+	.spinner-track {
+		opacity: 0.25;
+	}
+
+	.spinner-path {
+		opacity: 0.75;
+	}
+
+	.google-signin__logo {
+		width: 24px;
+		height: 24px;
+		flex-shrink: 0;
+		transition: transform 0.2s ease;
+	}
+
+	.google-signin__button:hover:not(:disabled) .google-signin__logo {
+		transform: scale(1.08);
+	}
+
+	@keyframes spin {
+		to {
+			transform: rotate(360deg);
+		}
+	}
+</style>
