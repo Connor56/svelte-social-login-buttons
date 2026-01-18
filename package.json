@@ -15,7 +15,10 @@
 	"files": [
 		"dist",
 		"!dist/**/*.test.*",
-		"!dist/**/*.spec.*"
+		"!dist/**/*.spec.*",
+		"LICENSE",
+		"README.md",
+		"package.json"
 	],
 	"sideEffects": [
 		"**/*.css"
@@ -48,7 +51,13 @@
 		"vite": "^7.2.6"
 	},
 	"keywords": [
-		"svelte"
+		"svelte",
+		"social-login",
+		"google",
+		"github",
+		"x",
+		"svelte-5",
+		"svelte-kit"
 	],
 	"pnpm": {
 		"onlyBuiltDependencies": [
