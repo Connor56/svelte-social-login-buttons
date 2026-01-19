@@ -1,8 +1,7 @@
 # Svelte Social Login Buttons
 
-**Svelte 5 • Components**
-
-Drop-in sign-in buttons with sensible defaults, accessibility, and customization.
+Drop-in sign-in buttons for Svelte 5. To see an example visit the documentation
+website here: https://connor56.github.io/svelte-social-login-buttons/
 
 ## Install
 
